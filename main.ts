@@ -1,3 +1,3 @@
-import UpdateWidget from "./cron/UpdateWidget.js";
+import UpdateWidget from "./helpers/UpdateWidget.js";
 
 await UpdateWidget();
