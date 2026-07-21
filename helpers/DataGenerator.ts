@@ -1,5 +1,4 @@
 import { type Data, type DynamicData, type MediaObject, type NumberObject, type StringObject, WidgetUserDataType } from "../types/Widget.json.js";
-import fs from "fs";
 
 class DynamicStringBuilder {
     private Name: string = "";
@@ -99,7 +98,6 @@ class DataGenerator {
     }
 
     public GetJSON(): string {
-        fs.writeFileSync("test6.json", JSON.stringify({ data: { dynamic: this.Data } }), { encoding: "utf-8" });
         return JSON.stringify({ data: { dynamic: this.Data } });
     }
 
