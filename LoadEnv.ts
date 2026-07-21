@@ -1,7 +1,3 @@
-import dotenv from "dotenv";
-
-dotenv.config();
-
 export default {
     GITHUB_USERNAME: process.env.GITHUB_USERNAME ?? "",
     APPLICATION_ID: process.env.APPLICATION_ID ?? "",
