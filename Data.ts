@@ -3,44 +3,44 @@ import type { Processed } from "./helpers/ProcessRequest.js";
 import ProcessRequest from "./helpers/ProcessRequest.js";
 import LoadEnv from "./LoadEnv.js";
 
+const GetNowWithOffset = (Offset: number): Date => new Date(Date.now() + Offset);
 const GetUntilNextBirthday = (BirthMonth: number, BirthDay: number): number => {
-    const Now: Date = new Date();
-    const NextBirthday: Date = new Date(
-        Now.getFullYear(),
-        BirthMonth - 1,
-        BirthDay
-    );
+    const Now: Date = GetNowWithOffset(25200000);
+    const NextBirthday: Date = new Date(Date.UTC(Now.getUTCFullYear(), BirthMonth - 1, BirthDay) - 25200000);
     
-    if(NextBirthday.getTime() <= Now.getTime())
+    if(NextBirthday.getTime() <= Date.now())
         NextBirthday.setFullYear(Now.getFullYear() + 1);
     
-    return NextBirthday.getTime() - Now.getTime();
+    return NextBirthday.getTime() - Date.now();
 };
 const GetBirthdayCountdownString = (Month: number, Day: number): string => {
-    const Now = new Date();
+    const Now = GetNowWithOffset(25200000);
 
-    let LastBirthday = new Date(Now.getFullYear(), Month - 1, Day);
+    let LastBirthday = new Date(Now.getUTCFullYear(), Month - 1, Day);
 
     if(LastBirthday > Now) 
-        LastBirthday.setFullYear(LastBirthday.getFullYear() - 1);
+        LastBirthday.setUTCFullYear(LastBirthday.getUTCFullYear() - 1);
 
-    const DaysSinceBirthday = Math.floor((Now.getTime() - LastBirthday.getTime()) / (1000 * 60 * 60 * 24));
+    const DaysSinceBirthday = Math.floor((Now.getTime() - LastBirthday.getTime()) / 86400000);
 
     if(DaysSinceBirthday >= 0 && DaysSinceBirthday < 7) 
         return "It's my birthday :)";
 
-    const DaysLeft = Math.ceil(GetUntilNextBirthday(Month, Day) / (1000 * 60 * 60 * 24));
+    const DaysLeft = Math.ceil(GetUntilNextBirthday(Month, Day) / 86400000);
 
     return `${DaysLeft} days left`;
-}
+};
 const GetAge = (BirthDate: Date): number => {
-    const Now: Date = new Date();
+    const Now: Date = GetNowWithOffset(25200000);
     const HasHadBirthdayThisYear: boolean = 
-        Now.getMonth() > BirthDate.getMonth() || 
-        (Now.getMonth() === BirthDate.getMonth() && Now.getDate() >= BirthDate.getDate())
+        Now.getUTCMonth() > BirthDate.getUTCMonth() || 
+        (
+            Now.getUTCMonth() === BirthDate.getUTCMonth() && 
+            Now.getUTCDate() >= BirthDate.getUTCDate()
+        )
     ;
 
-    let Age: number = Now.getFullYear() - BirthDate.getFullYear();
+    let Age: number = Now.getUTCFullYear() - BirthDate.getUTCFullYear();
     if(!HasHadBirthdayThisYear)
         Age--;
 
