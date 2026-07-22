@@ -123,7 +123,7 @@ const Data = async (): Promise<DataGenerator> => {
         .AddString(Builder => 
             Builder
                 .SetName("Subtitle2Value")
-                .SetValue("Programming, overengineering stuffs, like this widget for example.")
+                .SetValue("Programming, and overengineering stuff.")
         )
         .AddString(Builder => 
             Builder
