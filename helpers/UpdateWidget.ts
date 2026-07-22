@@ -11,7 +11,7 @@ const UpdateWidget = async (): Promise<void> => {
                 Authorization: `Bot ${LoadEnv.DISCORD_TOKEN}`,
                 "User-Agent": "DiscordBot (https://github.com/discord/discord-api-docs, 1.0.0)"
             },
-            body: Data.GetJSON()
+            body: (await Data()).GetJSON()
         }
     );
     console.log("Status:", Response.status);
