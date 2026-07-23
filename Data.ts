@@ -125,6 +125,16 @@ const Data = async (): Promise<DataGenerator> => {
                 .SetName("Subtitle2Value")
                 .SetValue("Programming, and overengineering stuff.")
         )
+                .AddString(Builder => 
+            Builder
+                .SetName("Subtitle3")
+                .SetValue("Country")
+        )
+        .AddString(Builder => 
+            Builder
+                .SetName("Subtitle3Value")
+                .SetValue("🇻🇳 Vietnam")
+        )
         .AddString(Builder => 
             Builder
                 .SetName("MiniProfileStatName")
@@ -143,16 +153,6 @@ const Data = async (): Promise<DataGenerator> => {
         .AddString(Builder => 
             Builder
                 .SetName("Stat6Value")
-                .SetValue("")
-        )
-        .AddString(Builder => 
-            Builder
-                .SetName("Subtitle3")
-                .SetValue("TBA")
-        )
-        .AddString(Builder => 
-            Builder
-                .SetName("Subtitle3Value")
                 .SetValue("")
         )
     ;
